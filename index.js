@@ -51,6 +51,14 @@ function transform(transformOption, importName, matches) {
   });
 }
 
+function skipDefaultConversion(skipConversionOption, importName) {
+  if (typeof skipConversionOption === 'function') {
+    return skipConversionOption(importName);
+  }
+
+  return skipConversionOption;
+}
+
 module.exports = function () {
   return {
     visitor: {
@@ -115,7 +123,7 @@ module.exports = function () {
 
             var replace = transform(opts.transform, importName, matches);
 
-            var newImportSpecifier = (opts.skipDefaultConversion)
+            var newImportSpecifier = skipDefaultConversion(opts.skipDefaultConversion, importName)
               ? memberImport
               : types.importDefaultSpecifier(types.identifier(memberImport.local.name));
 

@@ -18,6 +18,9 @@ import merge from 'lodash/merge';
 *Note: this plugin is not restricted to the react-bootstrap and lodash
 libraries.  You may use it with any library.*
 
+*Note: Repo forked from https://bitbucket.org/amctheatres/babel-transform-imports, 
+I added possibility to provide function for skipDefaultConversion option.*
+
 ## Why?
 
 When Babel encounters a member style import such as:
@@ -201,4 +204,4 @@ see the documentation located [here](https://bitbucket.org/amctheatres/babel-tra
 | --- | --- | --- | --- | --- |
 | `transform` | `string or function` | yes | `undefined` | The library name to use instead of the one specified in the import statement.  ${member} will be replaced with the import name, aka Grid/Row/Col/etc., and ${1-n} will be replaced by any matched regular expression groups. If using a JS Babel config file, a function may be passed directly. (see Advanced Transformations) |
 | `preventFullImport` | `boolean` | no | `false` | Whether or not to throw when an import is encountered which would cause the entire module to be imported. |
-| `skipDefaultConversion` | `boolean` | no | `false` | When set to true, will preserve `import { X }` syntax instead of converting to `import X`. |
+| `skipDefaultConversion` | `boolean | (importName) => boolean` | no | `false` | When set to true, will preserve `import { X }` syntax instead of converting to `import X`. |

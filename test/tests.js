@@ -111,6 +111,27 @@ describe('skipDefaultConversion plugin option', function () {
 
     const code = transform(`import { Grid, Row as row } from 'react-bootstrap';`, options);
 
+    assert.equal(`import { Grid } from "react-bootstrap/lib/Grid";\nimport { Row as row } from "react-bootstrap/lib/Row";`, code)
+    assert.equal(code.indexOf('_interopRequireDefault'), -1, 'skipDefaultConversion should not allow conversion to default import');
+  })
+
+  it('should not retain named import syntax when disabled', function () {
+    const options = createOptions({ skipDefaultConversion: false });
+
+    const code = transform(`import { Grid, Row as row } from 'react-bootstrap';`, options);
+
+    assert.equal(`import Grid from "react-bootstrap/lib/Grid";\nimport row from "react-bootstrap/lib/Row";`, code)
+    assert.equal(code.indexOf('_interopRequireDefault'), -1, 'skipDefaultConversion should not allow conversion to default import');
+  })
+
+  it('should retain named import syntax when function is provided and it returns true', function () {
+    const options = createOptions({ skipDefaultConversion: (importName) => { 
+        return importName === 'Grid';
+    }});
+
+    const code = transform(`import { Grid, Row as row } from 'react-bootstrap';`, options);
+
+    assert.equal(`import { Grid } from "react-bootstrap/lib/Grid";\nimport row from "react-bootstrap/lib/Row";`, code)
     assert.equal(code.indexOf('_interopRequireDefault'), -1, 'skipDefaultConversion should not allow conversion to default import');
   })
 });
