@@ -1,13 +1,11 @@
 {
   "name": "babel-plugin-transform-reexport",
   "version": "1.0.0",
-  "description": "Transforms member style imports (import {x} from 'y') into default style imports (import x from 'y/lib/x')",
+  "description": "Transforms named exports to absolute path default export",
   "keywords": [
     "babel",
     "transform",
-    "import",
-    "react-bootstrap",
-    "lodash"
+    "reexport"
   ],
   "main": "index.js",
   "repository": {
