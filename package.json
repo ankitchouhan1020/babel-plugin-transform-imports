@@ -12,9 +12,9 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.yandex-team.ru/toloka/babel-plugin-transform-imports"
+    "url": "https://github.com/ankitchouhan1020/babel-plugin-transform-imports"
   },
-  "homepage": "https://github.yandex-team.ru/toloka/babel-plugin-transform-imports",
+  "homepage": "https://github.com/ankitchouhan1020/babel-plugin-transform-imports",
   "scripts": {
     "test": "mocha --require @babel/register"
   },
